@@ -7,7 +7,6 @@ public class Livro {
     public static int DESCONTO = 20;
 
     public void vender(double valor){
-        double novoValor = valor - (valor * DESCONTO) / 100;
     }
 
     public void metodoContar(){
