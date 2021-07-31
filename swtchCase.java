@@ -81,7 +81,7 @@ public class swtchCase {
         }
     }
 
-    public static void usandoDOWHILE() {
+    public void usandoDOWHILE() {
         int valor = 1;
 
         do{
