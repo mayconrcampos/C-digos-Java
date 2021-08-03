@@ -5,16 +5,22 @@ public class UsandoCarro {
     public static void main(String[] args) {
 
         // instanciando objeto
-        ClasseCarro obj = new ClasseCarro();
+        ClasseCarro meucarro = new ClasseCarro("Vectra", 4, "MBO-7740", "2.0");
 
-        obj.modelo = "Ka";
-        obj.placa = "MBO9988";
-        obj.qtdPortas = 2;
+        meucarro.ligar();
+        meucarro.acelerar();
+        meucarro.acelerar();
+        meucarro.parar();
+        
+        for(Integer i = 0; i < 25; i++){
+            meucarro.acelerar();
+        }
 
-        System.out.println(obj.modelo);
-        System.out.println(obj.placa);
-        System.out.println(obj.qtdPortas);
-        obj.acelerar();
-        obj.parar();
+        meucarro.desligar();
+        meucarro.parar();
+        meucarro.desligar();
+        meucarro.acelerar();
+
+        
     }
 }

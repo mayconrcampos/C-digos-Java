@@ -22,6 +22,7 @@ public class ContaBancaria {
 
     public void getDados() {
         System.out.println("Banco   : "+this.banco);
+        System.out.println("AG      : "+this.ag);
         System.out.println("C/C     : "+this.cc);
         System.out.println("Cliente : "+this.nomeCliente);
         System.out.println("---------------------------");
