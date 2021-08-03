@@ -79,6 +79,16 @@ public class ClasseCarro {
         
     }
 
+    public void desacelerar() {
+        if(this.ligado && this.velocidade > 0){
+            this.velocidade -= 10;
+            System.out.println("Desacelerando carro em 10Km/h");
+            System.out.println("Você está na velocidade "+this.velocidade+" Km/h");
+        }else{
+            System.err.println("O carro já está parado.");
+        }
+    }
+
     public void parar() {
         if(this.ligado && this.velocidade > 0){
             this.velocidade = 0;

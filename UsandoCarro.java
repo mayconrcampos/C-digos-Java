@@ -15,6 +15,9 @@ public class UsandoCarro {
         for(Integer i = 0; i < 25; i++){
             meucarro.acelerar();
         }
+        for(Integer i = 0; i < 10; i++){
+            meucarro.desacelerar();
+        }
 
         meucarro.desligar();
         meucarro.parar();
