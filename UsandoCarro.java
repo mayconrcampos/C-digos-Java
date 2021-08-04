@@ -8,14 +8,11 @@ public class UsandoCarro {
         ClasseCarro meucarro = new ClasseCarro("Vectra", 4, "MBO-7740", "2.0");
 
         meucarro.ligar();
-        meucarro.acelerar();
-        meucarro.acelerar();
-        meucarro.parar();
         
-        for(Integer i = 0; i < 25; i++){
+        for(Integer i = 0; i < 8; i++){
             meucarro.acelerar();
         }
-        for(Integer i = 0; i < 10; i++){
+        for(Integer i = 0; i < 8; i++){
             meucarro.desacelerar();
         }
 
@@ -27,3 +24,4 @@ public class UsandoCarro {
         
     }
 }
+

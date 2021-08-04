@@ -56,11 +56,16 @@ public class ClasseCarro {
     }
 
     public void desligar() {
-        if(this.ligado && this.velocidade == 0){
-            this.ligado = false;
-            System.out.println("Você desligou o carro.");
+        if(this.ligado){
+            if(this.velocidade == 0){
+                this.ligado = false;
+                System.out.println("Você desligou o carro.");
+            }else{
+                System.out.println("O carro precisa estar parado para que você possa desliga-lo");
+            }
+            
         }else{
-            System.out.println("Você precisa parar o carro antes de desliga-lo");
+            System.out.println("O carro já está desligado.");
         }
     }
 
@@ -90,13 +95,18 @@ public class ClasseCarro {
     }
 
     public void parar() {
-        if(this.ligado && this.velocidade > 0){
-            this.velocidade = 0;
-            System.out.println("Carro totalmente parado!");
-            System.out.println("Velocidade Km/h : "+this.velocidade);
+        if(this.ligado){
+            if(this.velocidade > 0){
+                this.velocidade = 0;
+                System.out.println("Carro totalmente parado!");
+                System.out.println("Velocidade Km/h : "+this.velocidade);
+            }else{
+                System.out.println("O carro já está parado.");
+            } 
         }else{
-            System.out.println("O carro já está parado.");
+            System.out.println("O carro já está desligado.");
         }
         
     } 
 }
+
