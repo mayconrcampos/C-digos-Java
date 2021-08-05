@@ -10,7 +10,7 @@ public class swtchCase {
         //usandoIF();
         //usandoFOR();
         //usandoWHILE();
-        usandoDOWHILE();
+        //usandoDOWHILE();
     }
 
     public static void switche(){
