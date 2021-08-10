@@ -48,32 +48,32 @@ public class ContaCorrente extends Conta {
         System.out.println("Saldo           : "+this.getSaldo());
         System.out.println("Limite          : -"+this.getLimite());
         System.out.println("\n");
-
     }
 
-    public void sacar() {
+    public void sacar(Double saque) {
         Locale localeBR = new Locale("pt", "BR");
         NumberFormat valor = NumberFormat.getCurrencyInstance(localeBR);
 
-        Double sacando = this.saldo - 0.1;
+        Double taxa = 0.1;
+        Double sacando = (this.saldo - saque) - taxa;
         if(sacando >= -this.limite){
-            this.saldo -= 0.1;
-            System.out.println("Você sacou o valor de: "+ valor.format(0.1));
+            this.saldo -= saque + taxa;
+            System.out.println("Você sacou o valor de: "+ valor.format(saque));
             this.getConta();
         }else{
             System.out.println("Saldo insuficiente.");
-            System.out.println("Valor Saque: "+ valor.format(0.1));
+            System.out.println("Valor Saque: "+ valor.format(saque));
             this.getConta();
         }
     }
 
-    public void depositar() {
+    public void depositar(Double deposito) {
         Locale localeBR = new Locale("pt", "BR");
         NumberFormat valor = NumberFormat.getCurrencyInstance(localeBR);
 
-        this.saldo += 0.1;
-        System.out.println("Você depositou: "+  valor.format(0.1));
+        this.saldo += deposito;
+        System.out.println("Você depositou: "+  valor.format(deposito));
         this.getConta();
     }
-    
 }
+

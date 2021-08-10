@@ -41,31 +41,30 @@ public class ContaPoupanca extends Conta {
         System.out.println("---------------------------------------");
         System.out.println("Saldo           : "+this.getSaldo());
         System.out.println("\n");
-
     }
 
-    public void sacar() {
+    public void sacar(Double saque) {
         Locale localeBR = new Locale("pt", "BR");
         NumberFormat valor = NumberFormat.getCurrencyInstance(localeBR);
 
-        Double sacando = this.saldo - 0.1;
+        Double sacando = this.saldo - saque;
         if(sacando >= 0){
-            this.saldo -= 0.1;
-            System.out.println("Você sacou o valor de: "+valor.format(0.1));
+            this.saldo -= saque;
+            System.out.println("Você sacou o valor de: "+valor.format(saque));
             this.getConta();
         }else{
             System.out.println("Saldo insuficiente.");
-            System.out.println("Valor Saque: "+valor.format(0.1));
+            System.out.println("Valor Saque: "+valor.format(saque));
             this.getConta();
         }
     }
 
-    public void depositar() {
+    public void depositar(Double deposito) {
         Locale localeBR = new Locale("pt", "BR");
         NumberFormat valor = NumberFormat.getCurrencyInstance(localeBR);
 
-        this.saldo += 0.1;
-        System.out.println("Você depositou: "+ valor.format(0.1));
+        this.saldo += deposito;
+        System.out.println("Você depositou: "+ valor.format(deposito));
         this.getConta();
     }
 }
