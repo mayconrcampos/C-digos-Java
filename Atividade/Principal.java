@@ -4,8 +4,8 @@ public class Principal {
 
     public static void main(String[] args) {
         
-        // Instanciando Cliente
-        Cliente maycon = new Cliente("Maycon Campos", "03772137997");
+        // Instanciando Cliente Maycon
+        Cliente maycon = new Cliente("Maycon R. Campos", "12345678997");
         
         System.out.println("Nome : "+maycon.getNome());
         System.out.println("CPF  : "+maycon.getCPF());
@@ -16,10 +16,10 @@ public class Principal {
         conta.depositar();
         conta.depositar();
         
-        Cliente Ariana = new Cliente("Ariana D. Campos", "04678255990");
+        // Instanciando cliente minha esposa
+        Cliente Ariana = new Cliente("Ariana D. Campos", "33222144565");
         ContaPoupanca contaPoupanca = new ContaPoupanca(1211, 154, Ariana.getNome());
         contaPoupanca.sacar();
-        contaPoupanca.depositar();
         contaPoupanca.depositar();
         contaPoupanca.depositar();
         

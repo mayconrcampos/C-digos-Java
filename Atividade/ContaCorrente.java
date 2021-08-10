@@ -1,5 +1,8 @@
 package Atividade;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class ContaCorrente extends Conta {
     private Double limite;
 
@@ -15,8 +18,18 @@ public class ContaCorrente extends Conta {
         }
     }
 
-    private double getSaldo(){
-        return this.saldo;
+    private String getSaldo(){
+        Locale localeBR = new Locale("pt", "BR");
+        NumberFormat valor = NumberFormat.getCurrencyInstance(localeBR);
+
+        return valor.format(this.saldo);
+    }
+
+    private String getLimite(){
+        Locale localeBR = new Locale("pt", "BR");
+        NumberFormat valor = NumberFormat.getCurrencyInstance(localeBR);
+
+        return valor.format(this.limite);
     }
 
     private void getConta() {
@@ -25,28 +38,34 @@ public class ContaCorrente extends Conta {
         System.out.println("Agência         : "+this.agencia);
         System.out.println("Cliente         : "+this.cliente);
         System.out.println("---------------------------------------");
-        System.out.println("Saldo  (R$)     : "+this.getSaldo());
-        System.out.println("Limite (R$)     : "+this.limite);
+        System.out.println("Saldo           : "+this.getSaldo());
+        System.out.println("Limite          : -"+this.getLimite());
         System.out.println("\n\n\n");
 
     }
 
     public void sacar() {
+        Locale localeBR = new Locale("pt", "BR");
+        NumberFormat valor = NumberFormat.getCurrencyInstance(localeBR);
+
         Double sacando = this.saldo - 0.1;
         if(sacando >= -this.limite){
             this.saldo -= 0.1;
-            System.out.println("Você sacou o valor de (R$): "+0.1);
+            System.out.println("Você sacou o valor de: "+ valor.format(0.1));
             this.getConta();
         }else{
             System.out.println("Saldo insuficiente.");
-            System.out.println("Valor Saque (R$): "+0.1);
+            System.out.println("Valor Saque: "+ valor.format(0.1));
             this.getConta();
         }
     }
 
     public void depositar() {
+        Locale localeBR = new Locale("pt", "BR");
+        NumberFormat valor = NumberFormat.getCurrencyInstance(localeBR);
+
         this.saldo += 0.1;
-        System.out.println("Você depositou (R$): "+  0.1);
+        System.out.println("Você depositou: "+  valor.format(0.1));
         this.getConta();
     }
     
