@@ -6,11 +6,13 @@ import java.util.Locale;
 public class ContaCorrente extends Conta {
     private Double limite;
 
-    public ContaCorrente(Integer numero, Integer agencia, String cliente, Double limite){
+    public ContaCorrente(Integer numero, Integer agencia, String cliente, String cpf, Double limite){
+        Cliente client = new Cliente(cliente, cpf);
+
         if(numero > 0 && agencia > 0){
             this.numero = numero;
             this.agencia = agencia;
-            this.cliente = cliente;
+            this.cliente = client.getNome();
             this.saldo = 0.0;
             this.limite = limite;
         }else{

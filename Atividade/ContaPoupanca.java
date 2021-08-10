@@ -7,12 +7,16 @@ import java.util.Locale;
 public class ContaPoupanca extends Conta {
     
 
-    public ContaPoupanca(Integer numero, Integer agencia, String cliente){
+    public ContaPoupanca(Integer numero, Integer agencia, String cliente, String cpf){
+        Cliente client = new Cliente(cliente, cpf);
+
         if(numero > 0 && agencia > 0){
             this.numero = numero;
             this.agencia = agencia;
-            this.cliente = cliente;
+            this.cliente = client.getNome();
             this.saldo = 0.0;
+
+            this.getConta();
         }else{
             System.out.println("ERRO! Número de AG e Número precisa ser Maior que 0.");
         }
