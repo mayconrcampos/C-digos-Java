@@ -5,6 +5,7 @@ import java.util.Locale;
 
 
 public class ContaPoupanca extends Conta {
+    private String cpf;
     
 
     public ContaPoupanca(Integer numero, Integer agencia, String cliente, String cpf){
@@ -14,6 +15,7 @@ public class ContaPoupanca extends Conta {
             this.numero = numero;
             this.agencia = agencia;
             this.cliente = client.getNome();
+            this.cpf = client.getCPF();
             this.saldo = 0.0;
 
             this.getConta();
@@ -35,9 +37,10 @@ public class ContaPoupanca extends Conta {
         System.out.println("Número          : "+this.numero);
         System.out.println("Agência         : "+this.agencia);
         System.out.println("Cliente         : "+this.cliente);
+        System.out.println("CPF             : "+this.cpf);
         System.out.println("---------------------------------------");
         System.out.println("Saldo           : "+this.getSaldo());
-        System.out.println("\n\n\n");
+        System.out.println("\n");
 
     }
 

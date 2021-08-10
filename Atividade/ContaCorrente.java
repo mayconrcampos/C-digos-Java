@@ -5,6 +5,7 @@ import java.util.Locale;
 
 public class ContaCorrente extends Conta {
     private Double limite;
+    private String cpf;
 
     public ContaCorrente(Integer numero, Integer agencia, String cliente, String cpf, Double limite){
         Cliente client = new Cliente(cliente, cpf);
@@ -13,8 +14,11 @@ public class ContaCorrente extends Conta {
             this.numero = numero;
             this.agencia = agencia;
             this.cliente = client.getNome();
+            this.cpf = client.getCPF();
             this.saldo = 0.0;
             this.limite = limite;
+
+            this.getConta();
         }else{
             System.out.println("ERRO! Números de AG e Número precisa ser Maior que 0");
         }
@@ -39,10 +43,11 @@ public class ContaCorrente extends Conta {
         System.out.println("Número          : "+this.numero);
         System.out.println("Agência         : "+this.agencia);
         System.out.println("Cliente         : "+this.cliente);
+        System.out.println("CPF             : "+this.cpf);
         System.out.println("---------------------------------------");
         System.out.println("Saldo           : "+this.getSaldo());
         System.out.println("Limite          : -"+this.getLimite());
-        System.out.println("\n\n\n");
+        System.out.println("\n");
 
     }
 
