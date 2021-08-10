@@ -6,7 +6,8 @@ public abstract class Conta {
     String cliente;
     Double saldo;
 
-    
+    public abstract void sacar();
+    public abstract void depositar();
 }
 
 

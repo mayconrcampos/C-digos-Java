@@ -15,12 +15,17 @@ public class ContaCorrente extends Conta {
         }
     }
 
-    public void getConta() {
+    private double getSaldo(){
+        return this.saldo;
+    }
+
+    private void getConta() {
+        System.out.println("-------- Conta Corrente -------");
         System.out.println("Número          : "+this.numero);
         System.out.println("Agência         : "+this.agencia);
         System.out.println("Cliente         : "+this.cliente);
         System.out.println("---------------------------------------");
-        System.out.println("Saldo  (R$)     : "+this.saldo);
+        System.out.println("Saldo  (R$)     : "+this.getSaldo());
         System.out.println("Limite (R$)     : "+this.limite);
         System.out.println("\n\n\n");
 
