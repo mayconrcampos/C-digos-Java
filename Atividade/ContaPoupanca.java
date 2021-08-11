@@ -17,6 +17,8 @@ public class ContaPoupanca extends Conta {
             this.cpf = client.getCPF();
             this.saldo = 0.0;
 
+            System.out.println("Conta Poupança Criada com Saldo inicial "+this.getSaldo() +"\n");
+
             this.getConta();
         }else{
             System.out.println("ERRO! Número de AG e Número precisa ser Maior que 0.");

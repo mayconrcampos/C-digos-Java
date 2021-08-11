@@ -18,9 +18,12 @@ public class ContaCorrente extends Conta {
             this.saldo = 0.0;
             this.limite = limite;
 
+            System.out.println("Conta Corrente Criada com Saldo inicial "+this.getSaldo() +"\n");
+
             this.getConta();
         }else{
             System.out.println("ERRO! Números de AG e Número precisa ser Maior que 0");
+            
         }
     }
 
