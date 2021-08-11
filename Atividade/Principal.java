@@ -5,7 +5,7 @@ public class Principal {
     public static void main(String[] args) {
 
         // Cria-se uma conta corrente com número negativo
-        ContaCorrente contaNegativa = new ContaCorrente(-1, -1, "Cliente", "cpf", 500);
+        ContaCorrente contaNegativa = new ContaCorrente(-1, -1, "Cliente", "cpf", 500.00);
         
         // Instanciando conta corrente com meu nome e duzentos reais de limite.
         ContaCorrente conta = new ContaCorrente(11355, 10232559, "Maycon R. Campos", "03321112356", 200.00);

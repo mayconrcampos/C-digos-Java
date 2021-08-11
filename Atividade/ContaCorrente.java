@@ -8,9 +8,8 @@ public class ContaCorrente extends Conta {
     private String cpf;
 
     public ContaCorrente(Integer numero, Integer agencia, String cliente, String cpf, Double limite){
-        Cliente client = new Cliente(cliente, cpf);
-
         if(numero > 0 && agencia > 0){
+            Cliente client = new Cliente(cliente, cpf);
             this.numero = numero;
             this.agencia = agencia;
             this.cliente = client.getNome();
@@ -22,8 +21,7 @@ public class ContaCorrente extends Conta {
 
             this.getConta();
         }else{
-            System.out.println("ERRO! Números de AG e Número precisa ser Maior que 0");
-            
+            System.out.println("ERRO! Números de AG e Número precisam ser Maiores que 0");
         }
     }
 
