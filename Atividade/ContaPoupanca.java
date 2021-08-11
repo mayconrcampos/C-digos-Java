@@ -30,7 +30,7 @@ public class ContaPoupanca extends Conta {
         return valor.format(this.saldo);
     }
 
-    public void getConta() {
+    private void getConta() {
 
         System.out.println("-------- Conta Poupança ------");
         System.out.println("Número          : "+this.numero);
