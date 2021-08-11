@@ -50,11 +50,15 @@ public class ContaPoupanca extends Conta {
         Double sacando = this.saldo - saque;
         if(sacando >= 0){
             this.saldo -= saque;
+            System.out.println("----------------------------");
             System.out.println("Você sacou o valor de: "+valor.format(saque));
+            System.out.println("----------------------------");
             this.getConta();
         }else{
-            System.out.println("Saldo insuficiente.");
+            System.out.println("----------------------------");
+            System.out.println("Saldo insuficiente. Saque não efetuado.");
             System.out.println("Valor Saque: "+valor.format(saque));
+            System.out.println("----------------------------");
             this.getConta();
         }
     }

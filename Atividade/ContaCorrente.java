@@ -58,11 +58,18 @@ public class ContaCorrente extends Conta {
         Double sacando = (this.saldo - saque) - taxa;
         if(sacando >= -this.limite){
             this.saldo -= saque + taxa;
+            System.out.println("----------------------------");
             System.out.println("Você sacou o valor de: "+ valor.format(saque));
+            System.out.println("Taxa de Saque: R$(0,10)");
+            System.out.println("----------------------------");
             this.getConta();
         }else{
-            System.out.println("Saldo insuficiente.");
+            
+            System.out.println("----------------------------");
             System.out.println("Valor Saque: "+ valor.format(saque));
+            System.out.println("Taxa de Saque: R$(0,10)");
+            System.out.println("----------------------------");
+            System.out.println("Saldo insuficiente. Saque não efetuado.");
             this.getConta();
         }
     }
