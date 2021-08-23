@@ -25,11 +25,8 @@ public class ContaCorrente extends Conta {
         }
     }
 
-    private String getSaldo(){
-        Locale localeBR = new Locale("pt", "BR");
-        NumberFormat valor = NumberFormat.getCurrencyInstance(localeBR);
-
-        return valor.format(this.saldo);
+    private Double getSaldo(){
+        return this.saldo;
     }
 
     private String getLimite(){
