@@ -42,7 +42,6 @@ public class Cadastro {
                     valor = scan.nextDouble();
                 }
                 
-                scan.nextLine();
                 System.out.println("Digite a Unidade: UNI, metro, Par, Cento, Mil :");
                 String unidade = scan.nextLine();
                 while(unidade == "" || unidade == null){
@@ -122,52 +121,52 @@ public class Cadastro {
 
     public void alteraProduto(String nome) {
         Scanner scan = new Scanner(System.in);
+        Integer conta = 0;
+        Integer compara, indice;
+        
         for(Integer index = 0; index < ListaProdutos.produtos.size(); index++){
             String string1 = nome.toUpperCase();
             String string2 = ListaProdutos.produtos.get(index).getNome();
             
-            int compara = string1.compareTo(string2);
+            compara = string1.compareTo(string2);
             if(compara == 0){
-                String nome1 = ListaProdutos.produtos.get(index).getNome();
-                Double valor = ListaProdutos.produtos.get(index).getValor();
-                String unidade = ListaProdutos.produtos.get(index).getUnidade();
-                Integer qtde = ListaProdutos.produtos.get(index).getQtdeEstoque();
+                conta++;
+                indice = index;
+                System.out.println("Nome:   "+ListaProdutos.produtos.get(index).getNome()+"    Valor (R$):     "+ListaProdutos.produtos.get(index).getValor()+"   Unidade:    "+ListaProdutos.produtos.get(index).getUnidade()+"     Qtde Estoque:   "+ListaProdutos.produtos.get(index).getQtdeEstoque()+"\n");
 
-                System.out.println("Produto encontrado.\n");
-                System.out.println("Nome:   "+nome1+"    Valor (R$):     "+valor+"   Unidade:    "+unidade+"     Qtde Estoque:   "+qtde+"");
-
-                System.out.println("Deseja editar produto? S/N");
-                
-                char opcao = scan.nextLine().charAt(0);
-                
-                opcao = Character.toUpperCase(opcao);
-
-                switch (opcao) {
-                    case 'S':
-                        ListaProdutos.produtos.remove(ListaProdutos.produtos.get(index));
-                        //this.relatorios();    
-
-                        System.out.println("Favor preencher os campos para a alteração do produto.\n\n");
-
-                        this.cadastraProduto(0);
-                        break;
-                    case 'N':
-                        System.out.println("Você escolheu N. Voltando a tela 1.1\n\n");
-                        Menu.menuCadastroDeProdutos();
-                        break;
-
-                    default:
-                        System.out.println("Opção inválida.\n\n");
-                        Menu.menuCadastroDeProdutos();
-                        break;
+                if(conta > 0){
+                    System.out.println("Produto encontrado.\n");
+                    
+                    System.out.println("Deseja editar produto? S/N");
+                    
+                    char opcao = scan.nextLine().charAt(0);
+                    
+                    opcao = Character.toUpperCase(opcao);
+                    switch (opcao) {
+                        case 'S':
+                            ListaProdutos.produtos.remove(ListaProdutos.produtos.get(indice));
+                            //this.relatorios();    
+                            System.out.println("Favor preencher os campos para a alteração do produto.\n\n");
+                            this.cadastraProduto(0);
+                            break;
+                        case 'N':
+                            System.out.println("Você escolheu N. Voltando a tela 1.1\n\n");
+                            Menu.menuCadastroDeProdutos();
+                            break;
+                        default:
+                            System.out.println("Opção inválida.\n\n");
+                            Menu.menuCadastroDeProdutos();
+                            break;
+                    }
+                }else{
+                    System.out.println("Produto Não encontrado.\n");
+                    Menu.alteracaoProduto();
                 }
             }
-        }      
+        }
+        
     }
 
-    public Integer indice(Integer indice) {
-        return indice;
-    }
 
     // Consulta de Produtos
 
@@ -237,16 +236,19 @@ public class Cadastro {
     // Método que gera relatórios e lista todos os produtos cadastrados.
 
     public void relatorios() {
-        System.out.println(" ------ Relatório de Estoque ------ ");
+        System.out.println(" ------------ Relatório de Estoque ------------------ ");
+        Integer total = 0;
         for(Integer i = 0; i < ListaProdutos.produtos.size(); i++) {
+            total++;
             String nome = ListaProdutos.produtos.get(i).getNome();
             Double valor = ListaProdutos.produtos.get(i).getValor();
             String unidade = ListaProdutos.produtos.get(i).getUnidade();
             Integer qtde = ListaProdutos.produtos.get(i).getQtdeEstoque();
 
-            System.out.println("Nome:   "+nome+"    Valor (R$):     "+valor+"   Unidade:    "+unidade+"     Qtde Estoque:   "+qtde+"\n\n");
+            System.out.println("Nome:   "+nome+"    Valor (R$):     "+valor+"   Unidade:    "+unidade+"     Qtde Estoque:   "+qtde+"\n");
             
         }
+        System.out.println("Total de Produtos cadastrados                  :"+total);
     }
 
     // Método para excluir um produto da lista de Produtos
