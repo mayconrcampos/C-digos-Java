@@ -116,11 +116,22 @@ public class Menu {
     }
 
     public static void consultaProduto() {
+        System.out.println("TELA 1.1.3 --- Empresa de Importação de Produtos LTDA -----");
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("------------ Sistema de Controle de Estoque ---------------");
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("CONSULTA DE PRODUTOS -------------------------------------");
         
+        Cadastro cadastro = new Cadastro();
+        
+        Scanner scan = new Scanner(System.in);
+        String produto = scan.nextLine();
+
+        cadastro.consultaProduto(produto);
     }
 
     public static void exclusaoProduto() {
-        
+        // implementar
     }
 
             

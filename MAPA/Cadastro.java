@@ -167,6 +167,12 @@ public class Cadastro {
         }*/
     }
 
+    // Consulta de Produtos
+
+    public void consultaProduto(String nome) {
+        // Implementar
+    }
+
     // Método que gera relatórios e lista todos os produtos cadastrados.
 
     public void relatorios() {
