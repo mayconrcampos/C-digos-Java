@@ -99,7 +99,7 @@ public class Menu {
         System.out.println("INCLUSÃO DE PRODUTOS --------------------------------------");
         
         Cadastro cadastro = new Cadastro();
-        cadastro.cadastraProduto();
+        cadastro.cadastraProduto(1);
     }
 
     public static void alteracaoProduto() {

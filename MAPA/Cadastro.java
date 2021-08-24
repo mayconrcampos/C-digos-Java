@@ -6,7 +6,7 @@ public class Cadastro {
     
     // Método Cadastra Produtos
 
-    public void cadastraProduto() {
+    public void cadastraProduto(Integer flag) {
             Scanner scan = new Scanner(System.in);
 
             System.out.println("Digite o nome do produto: ");
@@ -31,7 +31,7 @@ public class Cadastro {
 
             if(existe > 0){
                 System.out.println("ERRO ao inserir. Produto já existe.");
-                this.cadastraProduto();
+                this.cadastraProduto(1);
 
             }else{
                 System.out.println("Digite o valor (R$): ");
@@ -59,7 +59,13 @@ public class Cadastro {
                 }
                 
                 scan.nextLine();
-                System.out.println("Confirma Inclusão? S/N :");
+
+                if(flag == 1){
+                    System.out.println("Confirma Inclusão? S/N :");
+                }else if(flag == 0){
+                    System.out.println("Confirma Alteração? S/N :");
+                }
+                
                 char opcao = scan.nextLine().charAt(0);
                 
                 opcao = Character.toUpperCase(opcao);
@@ -67,29 +73,37 @@ public class Cadastro {
                     case 'S':
                         ListaProdutos.setCadastro(new Produto(nome, valor, unidade, estoque));
 
-                        System.out.println("Produto inserido com sucesso.");
+                        if(flag == 1){
+                            System.out.println("Produto inserido com sucesso.");
                             
-                        //System.out.println(this.produtos.get(0).getNome());
-                        this.relatorios();
+                            //System.out.println(this.produtos.get(0).getNome());
+                            this.relatorios();
 
-                        scan.nextLine();
-                        System.out.println("Repetir operação? S/N :");
-                        Character repetir = scan.next().charAt(0);
-                        repetir = Character.toUpperCase(repetir);
+                            scan.nextLine();
 
-                        if(repetir == 'S'){
-                            System.out.println("Cadastrar novo Produto.\n\n");
-                            this.cadastraProduto();
-                            break;
-                        }else if(repetir == 'N'){
-                            System.out.println("Opção N selecionada. Voltando ao menu 1.1\n\n");
+                            
+                            System.out.println("Repetir operação? S/N :");
+                            Character repetir = scan.next().charAt(0);
+                            repetir = Character.toUpperCase(repetir);
+
+                            if(repetir == 'S'){
+                                System.out.println("Cadastrar novo Produto.\n\n");
+                                this.cadastraProduto(1);
+                                break;
+                            }else if(repetir == 'N'){
+                                System.out.println("Opção N selecionada. Voltando ao menu 1.1\n\n");
+                                Menu.menuCadastroDeProdutos();
+                                break;
+                            }else{
+                                System.out.println("Opção Inválida! Retornando ao Menu 1.1.1\n\n");
+                                Menu.inclusaoProduto(); 
+                                break;
+                            }
+                        }else if(flag == 0){
+                            System.err.println("Item Alterado com sucesso\n");
                             Menu.menuCadastroDeProdutos();
-                            break;
-                        }else{
-                            System.out.println("Opção Inválida! Retornando ao Menu 1.1.1\n\n");
-                            Menu.inclusaoProduto(); 
-                            break;
                         }
+                        
 
                     case 'N':
                         System.out.println("Opção N selecionada. Voltando ao menu 1.1\n\n");
@@ -131,11 +145,11 @@ public class Cadastro {
                 switch (opcao) {
                     case 'S':
                         ListaProdutos.produtos.remove(ListaProdutos.produtos.get(index));
-                        this.relatorios();    
+                        //this.relatorios();    
 
-                        System.out.println("Item atual excluido. Fazer novo cadastro do produto.\n\n");
+                        System.out.println("Favor preencher os campos para a alteração do produto.\n\n");
 
-                        this.cadastraProduto();
+                        this.cadastraProduto(0);
                         break;
                     case 'N':
                         System.out.println("Você escolheu N. Voltando a tela 1.1\n\n");
@@ -154,7 +168,42 @@ public class Cadastro {
     // Consulta de Produtos
 
     public void consultaProduto(String nome) {
-        // Implementar
+        Scanner scan = new Scanner(System.in);
+        for(Integer index = 0; index < ListaProdutos.produtos.size(); index++){
+            String string1 = nome.toUpperCase();
+            String string2 = ListaProdutos.produtos.get(index).getNome();
+            
+            int compara = string1.compareTo(string2);
+            if(compara == 0){
+                String nome1 = ListaProdutos.produtos.get(index).getNome();
+                Double valor = ListaProdutos.produtos.get(index).getValor();
+                String unidade = ListaProdutos.produtos.get(index).getUnidade();
+                Integer qtde = ListaProdutos.produtos.get(index).getQtdeEstoque();
+
+                System.out.println("Produto encontrado.\n");
+                System.out.println("Nome:   "+nome1+"    Valor (R$):     "+valor+"   Unidade:    "+unidade+"     Qtde Estoque:   "+qtde+"\n");
+
+                System.out.println("Deseja fazer nova consulta? S/N :");
+                char opcao = scan.nextLine().charAt(0);
+                
+                opcao = Character.toUpperCase(opcao);
+
+                switch (opcao) {
+                    case 'S':
+                        System.err.println("Você escolheu S. Retornando ao menu 1.1.3");
+                        Menu.consultaProduto();
+                        break;
+                    case 'N':
+                        System.out.println("Você escolheu N. Retornando ao menu 1.1");
+                        Menu.menuCadastroDeProdutos();
+                        break;
+                    default:
+                        System.out.println("Opção inválida!");
+                        Menu.menuCadastroDeProdutos();
+                        break;
+                }
+            }
+        }
     }
 
     // Método que gera relatórios e lista todos os produtos cadastrados.
