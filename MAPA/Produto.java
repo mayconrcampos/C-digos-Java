@@ -3,10 +3,12 @@ package MAPA;
 public class Produto {
     private String nome;
     private Double valor;
-    private Integer unidade;
+    private String unidade;
     private Integer qtde_estoque;
 
-    public Produto(String nome, Double valor, Integer unidade, Integer qtde_estoque) {
+    private Cadastro cadastro = new Cadastro();
+
+    public Produto(String nome, Double valor, String unidade, Integer qtde_estoque) {
         this.setNome(nome);
         this.setValor(valor);
         this.setUnidade(unidade);
@@ -14,22 +16,16 @@ public class Produto {
     }
 
     private void setNome(String nome) {
-        if(nome != "") {
-            this.nome = nome;
-        }
+        this.nome = nome.toUpperCase();
         
     }
 
     private void setValor(Double valor) {
-        if(valor > 0){
-            this.valor = valor;
-        }else{
-            System.out.println("ERRO! Valor precisa ser acima de 0.");;
-        }
+        this.valor = valor;
     }
 
-    private void setUnidade(Integer unidade) {
-        this.unidade = unidade;
+    private void setUnidade(String unidade) {
+            this.unidade = unidade;        
     }
 
     private void setQtdeEstoque(Integer qtde_estoque) {
@@ -48,7 +44,7 @@ public class Produto {
         return this.valor;
     }
 
-    public Integer getUnidade() {
+    public String getUnidade() {
         return this.unidade;
     }
 

@@ -21,7 +21,6 @@ public class Menu {
         Scanner scan = new Scanner(System.in);
         Integer opcao = scan.nextInt();
 
-
         switch(opcao){
             case 0:
                 System.out.println("0. Você finalizou o programa.");
@@ -42,6 +41,7 @@ public class Menu {
             default:
                 System.out.println("Opção Inválida!\n\n\n\n");
                 Menu.menuPrincipal();
+
                 
         }
     }
@@ -122,4 +122,6 @@ public class Menu {
     public static void exclusaoProduto() {
         
     }
+
+            
 }
