@@ -107,64 +107,48 @@ public class Cadastro {
     // Método Altera Produto
 
     public void alteraProduto(String nome) {
-
-        
-        if(ListaProdutos.produtos.contains(nome)){
-            System.out.println("Tem sim.");
-        }else{
-            System.out.println("Notem não");
-        }
-        
-        /*
         Scanner scan = new Scanner(System.in);
+        for(Integer index = 0; index < ListaProdutos.produtos.size(); index++){
+            String string1 = nome.toUpperCase();
+            String string2 = ListaProdutos.produtos.get(index).getNome();
+            
+            int compara = string1.compareTo(string2);
+            if(compara == 0){
+                String nome1 = ListaProdutos.produtos.get(index).getNome();
+                Double valor = ListaProdutos.produtos.get(index).getValor();
+                String unidade = ListaProdutos.produtos.get(index).getUnidade();
+                Integer qtde = ListaProdutos.produtos.get(index).getQtdeEstoque();
 
-        System.out.println("Digite o nome do produto: ");
-        String nome = scan.nextLine();
-        scan.nextLine();
+                System.out.println("Produto encontrado.\n");
+                System.out.println("Nome:   "+nome1+"    Valor (R$):     "+valor+"   Unidade:    "+unidade+"     Qtde Estoque:   "+qtde+"");
 
-        System.out.println("Digite o valor (R$): ");
-        Double valor = scan.nextDouble();
-        //scan.nextLine();
-
-        System.out.println("Digite quantas Unidades: ");
-        Integer unidade = scan.nextInt();
-        //scan.nextLine();
-
-        System.out.println("Digite quantidade em estoque: ");
-        Integer estoque = scan.nextInt();
-        //scan.nextLine();
-
-        
-        
-        System.out.println("Confirma Inclusão? S/N :");
-        String opcao = scan.next();
-
-        switch(opcao.toUpperCase()){
-            case "S":
-                Produto prod = new Produto(nome, valor, unidade, estoque);
-                this.setCadastro(prod);
-
-                System.out.println("Repetir operação? S/N :");
-                String repetir = scan.next();
-
-                if(repetir.toUpperCase() == "S"){
-                    Menu.inclusaoProduto();
-                    break;
-                }else{
-
-
-                }
+                System.out.println("Deseja editar produto? S/N");
                 
-            case "N":
-                System.out.println("Inclusão não confirmada.");
-                Menu.menuCadastroDeProdutos();
-                break;
+                char opcao = scan.nextLine().charAt(0);
+                
+                opcao = Character.toUpperCase(opcao);
 
-            default:
-                System.out.println("Opção inválida\n\n\n");
-                Menu.menuCadastroDeProdutos();
+                switch (opcao) {
+                    case 'S':
+                        ListaProdutos.produtos.remove(ListaProdutos.produtos.get(index));
+                        this.relatorios();    
 
-        }*/
+                        System.out.println("Item atual excluido. Fazer novo cadastro do produto.\n\n");
+
+                        this.cadastraProduto();
+                        break;
+                    case 'N':
+                        System.out.println("Você escolheu N. Voltando a tela 1.1\n\n");
+                        Menu.menuCadastroDeProdutos();
+                        break;
+
+                    default:
+                        System.out.println("Opção inválida.\n\n");
+                        Menu.menuCadastroDeProdutos();
+                        break;
+                }
+            }
+        }      
     }
 
     // Consulta de Produtos
@@ -183,7 +167,7 @@ public class Cadastro {
             String unidade = ListaProdutos.produtos.get(i).getUnidade();
             Integer qtde = ListaProdutos.produtos.get(i).getQtdeEstoque();
 
-            System.out.println("Nome: "+nome+" Valor (R$): "+valor+" Unidade: "+unidade+" Qtde Estoque: "+qtde+"");
+            System.out.println("Nome:   "+nome+"    Valor (R$):     "+valor+"   Unidade:    "+unidade+"     Qtde Estoque:   "+qtde+"");
             
         }
     }

@@ -74,12 +74,15 @@ public class Menu {
                 break;
             case 2:
                 System.out.println("2. Alteração");
+                Menu.alteracaoProduto();
                 break;
             case 3:
                 System.out.println("3. Consulta");
+                Menu.consultaProduto();
                 break;
             case 4:
                 System.out.println("4. Exclusão");
+                Menu.exclusaoProduto();
                 break;
             default:
                 System.out.println("Opção Inválida!");
@@ -108,6 +111,7 @@ public class Menu {
         
         Cadastro cadastro = new Cadastro();
         
+        System.out.println("Digite o nome do produto pra alterar.");
         Scanner scan = new Scanner(System.in);
         String produto = scan.nextLine();
 
