@@ -58,7 +58,7 @@ public class Menu {
         System.out.println("4. Exclusão.");
         System.out.println("0. Retornar.");
         System.out.println("-----------------------------------------------------------");
-        System.out.println("Opção: 1, 2, 3, 4 ou 0 pra Sair.");
+        System.out.println("Opção: 1, 2, 3, 4 ou 0 pra Retornar ao Menu Principal.");
 
         Scanner scan = new Scanner(System.in);
         Integer opcao = scan.nextInt();
@@ -124,10 +124,11 @@ public class Menu {
         System.out.println("-----------------------------------------------------------");
         System.out.println("------------ Sistema de Controle de Estoque ---------------");
         System.out.println("-----------------------------------------------------------");
-        System.out.println("CONSULTA DE PRODUTOS -------------------------------------");
+        System.out.println("CONSULTA DE PRODUTOS --------------------------------------");
         
         Cadastro cadastro = new Cadastro();
         
+        System.out.println("Digite o nome do produto para ver seus dados.");
         Scanner scan = new Scanner(System.in);
         String produto = scan.nextLine();
 
@@ -135,7 +136,19 @@ public class Menu {
     }
 
     public static void exclusaoProduto() {
-        // implementar
+        System.out.println("TELA 1.1.3 --- Empresa de Importação de Produtos LTDA -----");
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("------------ Sistema de Controle de Estoque ---------------");
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("EXCLUSÃO DE PRODUTOS --------------------------------------");
+        
+        Cadastro cadastro = new Cadastro();
+        
+        System.out.println("Digite o nome do produto para excluir.");
+        Scanner scan = new Scanner(System.in);
+        String produto = scan.nextLine();
+
+        cadastro.excluirProduto(produto);
     }
 
             
