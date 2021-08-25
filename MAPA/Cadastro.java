@@ -6,7 +6,7 @@ public class Cadastro {
     
     // Método Cadastra Produtos
 
-    public void cadastraProduto(Integer flag) {
+    public void cadastraProduto(Integer flag, Integer indice) {
             System.out.println("Digite o nome do produto: ");
             String nome = Read.readString();
 
@@ -29,7 +29,7 @@ public class Cadastro {
 
             if(existe > 0){
                 System.out.println("ERRO ao inserir. Produto já existe.");
-                this.cadastraProduto(1);
+                this.cadastraProduto(1, 0);
 
             }else{
                 System.out.println("Digite o valor (R$): ");
@@ -78,7 +78,7 @@ public class Cadastro {
 
                             if(repetir.compareTo("S") == 0  || repetir.compareTo("") == 0){
                                 System.out.println("Cadastrar novo Produto.\n\n");
-                                this.cadastraProduto(1);
+                                this.cadastraProduto(1, 0);
                                 break;
                             }else if(repetir.compareTo("n") == 0 || repetir.compareTo("N") == 0){
                                 System.out.println("Opção N selecionada. Voltando ao menu 1.1\n\n");
@@ -91,6 +91,7 @@ public class Cadastro {
                             }
                         }else if(flag == 0){
                             System.out.println("Item Alterado com sucesso\n");
+                            ListaProdutos.produtos.remove(ListaProdutos.produtos.get(indice));
                             Menu.menuCadastroDeProdutos();
                         }
                         
@@ -101,6 +102,7 @@ public class Cadastro {
                         break;
                     default:
                         System.out.println("Opção inválida! Retornando ao menu 1.1\n\n");
+
                         Menu.menuCadastroDeProdutos();
 
                 }
@@ -149,10 +151,9 @@ public class Cadastro {
             switch (opcao) {
                 case "s":
                 case "S":
-                    ListaProdutos.produtos.remove(ListaProdutos.produtos.get(indice));
                     //this.relatorios();    
                     System.out.println("Favor preencher os campos para a alteração do produto.\n\n");
-                    this.cadastraProduto(0);
+                    this.cadastraProduto(0, indice);
                     break;
                 case "n":
                 case "N":

@@ -108,7 +108,7 @@ public class Menu {
         System.out.println("INCLUSÃO DE PRODUTOS --------------------------------------");
         
         Cadastro cadastro = new Cadastro();
-        cadastro.cadastraProduto(1);
+        cadastro.cadastraProduto(1, 0);
     }
 
     public static void alteracaoProduto() {
@@ -118,7 +118,7 @@ public class Menu {
         System.out.println("-----------------------------------------------------------");
         System.out.println("ALTERAÇÃO DE PRODUTOS -------------------------------------");
         
-        Cadastro cadastro = new Cadastro();
+        
         
         System.out.println("Digite o nome do produto pra alterar.");
         String produto = Read.readString();
@@ -127,7 +127,8 @@ public class Menu {
             System.out.println("Erro ao ler Produto. Digite novamente.");
             produto = Read.readString();
         }
-
+        
+        Cadastro cadastro = new Cadastro();
         cadastro.alteraProduto(produto);
 
     }
