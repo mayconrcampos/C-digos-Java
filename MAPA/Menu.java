@@ -33,6 +33,7 @@ public class Menu {
                 break;
             case 2:
                 System.out.println("2. Movimentação");
+                Menu.Movimentacao();
                 break;
             case 3:
                 System.out.println("3. Reajuste de Preços");
@@ -188,6 +189,7 @@ public class Menu {
         System.out.println("Opção: 1, 2 ou 0 pra Retornar ao 1.1 Cadastro de Produtos.");
 
         Integer opcao = Read.readInt();
+        String nome;
 
         while(opcao < 0){
             System.out.println("Opção numérica inválida. Digite novamente.");
@@ -201,9 +203,32 @@ public class Menu {
                 break;
 
             case 1:
+                // Entrada - Flag 1
+                System.out.println("1. Entrada - Digite o nome do Produto.");
+
+                nome = Read.readString();
+
+                while (nome.compareTo("") == 0 || nome.compareTo("erro") == 0) {
+                    System.out.println("Digite o nome do Produto.");
+                    nome = Read.readString();
+                }
+
+                Movimento.confirmaSeExiste(nome, 1);
+
                 break;
             
             case 2:
+                // Saída - Flag 0
+                System.out.println("1. Saída - Digite o nome do Produto.");
+
+                nome = Read.readString();
+
+                while (nome.compareTo("") == 0 || nome.compareTo("erro") == 0) {
+                    System.out.println("Digite o nome do Produto.");
+                    nome = Read.readString();
+                }
+
+                Movimento.confirmaSeExiste(nome, 0);
                 break;
 
             default:
