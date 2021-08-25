@@ -219,7 +219,7 @@ public class Menu {
             
             case 2:
                 // Saída - Flag 0
-                System.out.println("1. Saída - Digite o nome do Produto.");
+                System.out.println("2. Saída - Digite o nome do Produto.");
 
                 nome = Read.readString();
 

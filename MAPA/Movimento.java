@@ -2,17 +2,25 @@ package MAPA;
 
 public class Movimento {
     
-    public static void entrada(String nome, Integer indice) {
+    public static void entradaSaida(String nome, Integer indice, Integer flag) {
         System.out.println("Olár! entrada!\n\n\n\n\n");
+
+        switch (flag) {
+            case 0:
+                System.out.println("2. Saída de Produtos do estoque");
+                break;
+            case 1:
+                System.out.println("1. Entrada de Produtos no estoque.\n\n");
+
+
+
+                break;
+    
+        }
 
         
     }
 
-    public static void saida(String nome, Integer indice) {
-        System.out.println("Olár! saída!\n\n\n\n\n");
-
-
-    }
 
     public static void confirmaSeExiste(String nome, Integer flag){
         Integer conta = 0;
@@ -29,9 +37,9 @@ public class Movimento {
                 System.out.println("Nome:   "+ListaProdutos.produtos.get(index).getNome()+"    Valor (R$):     "+ListaProdutos.produtos.get(index).getValor()+"   Unidade:    "+ListaProdutos.produtos.get(index).getUnidade()+"     Qtde Estoque:   "+ListaProdutos.produtos.get(index).getQtdeEstoque()+"\n");
 
                 if(flag == 1){
-                    Movimento.entrada(nome, indice);
+                    Movimento.entradaSaida(nome, indice, flag);
                 }else{
-                    Movimento.saida(nome, indice);
+                    Movimento.entradaSaida(nome, indice, flag);
                 }
             }
         }
