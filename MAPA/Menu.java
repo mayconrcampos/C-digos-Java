@@ -18,8 +18,12 @@ public class Menu {
         System.out.println("-----------------------------------------------------------");
         System.out.println("Opção: 1, 2, 3, 4 ou 0 pra Sair.");
 
-        Scanner scan = new Scanner(System.in);
-        Integer opcao = scan.nextInt();
+        Integer opcao = Read.readInt();
+
+        while(opcao < 0){
+            System.out.println("Número inválido. Digite novamente.");
+            opcao = Read.readInt();
+        }
 
         switch(opcao){
             case 0:
@@ -60,9 +64,14 @@ public class Menu {
         System.out.println("-----------------------------------------------------------");
         System.out.println("Opção: 1, 2, 3, 4 ou 0 pra Retornar ao Menu Principal.");
 
-        Scanner scan = new Scanner(System.in);
-        Integer opcao = scan.nextInt();
+        //Scanner scan = new Scanner(System.in);
+        Integer opcao = Read.readInt();
 
+        while(opcao < 0){
+            System.out.println("Número inválido. Digite novamente.");
+            opcao = Read.readInt();
+        }
+        
         switch(opcao){
             case 0:
                 System.out.println("Retornar ao Menu Principal.\n\n\n\n");
@@ -112,8 +121,12 @@ public class Menu {
         Cadastro cadastro = new Cadastro();
         
         System.out.println("Digite o nome do produto pra alterar.");
-        Scanner scan = new Scanner(System.in);
-        String produto = scan.nextLine();
+        String produto = Read.readString();
+
+        while(produto.compareTo("") == 0 || produto.compareTo("erro") == 0){
+            System.out.println("Erro ao ler Produto. Digite novamente.");
+            produto = Read.readString();
+        }
 
         cadastro.alteraProduto(produto);
 
@@ -129,14 +142,19 @@ public class Menu {
         Cadastro cadastro = new Cadastro();
         
         System.out.println("Digite o nome do produto para ver seus dados.");
-        Scanner scan = new Scanner(System.in);
-        String produto = scan.nextLine();
+        
+        String produto = Read.readString();
+
+        while(produto.compareTo("") == 0 || produto.compareTo("erro") == 0){
+            System.out.println("Erro ao ler Produto. Digite novamente.");
+            produto = Read.readString();
+        }
 
         cadastro.consultaProduto(produto);
     }
 
     public static void exclusaoProduto() {
-        System.out.println("TELA 1.1.3 --- Empresa de Importação de Produtos LTDA -----");
+        System.out.println("TELA 1.1.4 --- Empresa de Importação de Produtos LTDA -----");
         System.out.println("-----------------------------------------------------------");
         System.out.println("------------ Sistema de Controle de Estoque ---------------");
         System.out.println("-----------------------------------------------------------");
@@ -145,11 +163,52 @@ public class Menu {
         Cadastro cadastro = new Cadastro();
         
         System.out.println("Digite o nome do produto para excluir.");
-        Scanner scan = new Scanner(System.in);
-        String produto = scan.nextLine();
+        
+        String produto = Read.readString();
+
+        while(produto.compareTo("") == 0 || produto.compareTo("erro") == 0){
+            System.out.println("Erro ao ler Produto. Digite novamente.");
+            produto = Read.readString();
+        }
 
         cadastro.excluirProduto(produto);
     }
 
+    public static void Movimentacao() {
+        System.out.println("TELA 1.2 ----- Empresa de Importação de Produtos LTDA -----");
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("------------ Sistema de Controle de Estoque ---------------");
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("MOVIMENTAÇÃO DE PRODUTOS ----------------------------------");
+        System.out.println("1. Entrada.");
+        System.out.println("2. Saída.");
+        System.out.println("0. Retornar.");
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("Opção: 1, 2 ou 0 pra Retornar ao 1.1 Cadastro de Produtos.");
+
+        Integer opcao = Read.readInt();
+
+        while(opcao < 0){
+            System.out.println("Opção numérica inválida. Digite novamente.");
+            opcao = Read.readInt();
+        }
+
+        switch (opcao) {
+            case 0:
+                System.out.println("0. Você retornou ao Menu Cadastro de Produtos.");
+                Menu.menuCadastroDeProdutos();
+                break;
+
+            case 1:
+                break;
             
+            case 2:
+                break;
+
+            default:
+                System.out.println("Opção inválida!\n");
+                Menu.Movimentacao();
+                break;
+        }
+    }            
 }

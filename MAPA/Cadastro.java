@@ -7,14 +7,12 @@ public class Cadastro {
     // Método Cadastra Produtos
 
     public void cadastraProduto(Integer flag) {
-            Scanner scan = new Scanner(System.in);
-
             System.out.println("Digite o nome do produto: ");
-            String nome = scan.nextLine();
+            String nome = Read.readString();
 
-            while(nome.compareTo("") == 0){
+            while(nome.compareTo("erro") == 0 || nome.compareTo("") == 0){
                 System.out.println("Digite o nome do produto: ");
-                nome = scan.nextLine();
+                nome = Read.readString();
             }
             
             Integer existe = 0;
@@ -35,41 +33,38 @@ public class Cadastro {
 
             }else{
                 System.out.println("Digite o valor (R$): ");
-                Double valor = scan.nextDouble();
+                Double valor = Read.readDouble();
         
-                while(valor == 0) {
+                while(valor == 0.0) {
                     System.out.println("Digite o valor (R$): ");
-                    valor = scan.nextDouble();
+                    valor = Read.readDouble();
                 }
                 
                 System.out.println("Digite a Unidade: UNI, metro, Par, Cento, Mil :");
-                String unidade = scan.nextLine();
-                while(unidade == "" || unidade == null){
+                String unidade = Read.readString();
+                while(unidade.compareTo("erro") == 0 || unidade.compareTo("") == 0){
                     System.out.println("Digite a Unidade: UNI, metro, Par, Cento, Mil :");
-                    unidade = scan.nextLine();
+                    unidade = Read.readString();
                 }
                 
-                scan.nextLine();
                 System.out.println("Digite quantidade em estoque: ");
-                Integer estoque = scan.nextInt();
-                while(estoque < 1 || estoque != estoque.intValue()) {
+                Integer estoque = Read.readInt();
+                while(estoque < 0) {
                     System.out.println("Digite quantidade em estoque: ");
-                    estoque = scan.nextInt();
+                    estoque = Read.readInt();
                 }
                 
-                scan.nextLine();
-
                 if(flag == 1){
                     System.out.println("Confirma Inclusão? S/N :");
                 }else if(flag == 0){
                     System.out.println("Confirma Alteração? S/N :");
                 }
                 
-                char opcao = scan.nextLine().charAt(0);
+                String opcao = Read.readString();
                 
-                opcao = Character.toUpperCase(opcao);
                 switch(opcao){
-                    case 'S':
+                    case "s":
+                    case "S":
                         ListaProdutos.setCadastro(new Produto(nome, valor, unidade, estoque));
 
                         if(flag == 1){
@@ -78,18 +73,14 @@ public class Cadastro {
                             //System.out.println(this.produtos.get(0).getNome());
                             this.relatorios();
 
-                            scan.nextLine();
-
-                            
                             System.out.println("Repetir operação? S/N :");
-                            Character repetir = scan.next().charAt(0);
-                            repetir = Character.toUpperCase(repetir);
+                            String repetir = Read.readString();
 
-                            if(repetir == 'S'){
+                            if(repetir.compareTo("S") == 0  || repetir.compareTo("") == 0){
                                 System.out.println("Cadastrar novo Produto.\n\n");
                                 this.cadastraProduto(1);
                                 break;
-                            }else if(repetir == 'N'){
+                            }else if(repetir.compareTo("n") == 0 || repetir.compareTo("N") == 0){
                                 System.out.println("Opção N selecionada. Voltando ao menu 1.1\n\n");
                                 Menu.menuCadastroDeProdutos();
                                 break;
@@ -99,12 +90,12 @@ public class Cadastro {
                                 break;
                             }
                         }else if(flag == 0){
-                            System.err.println("Item Alterado com sucesso\n");
+                            System.out.println("Item Alterado com sucesso\n");
                             Menu.menuCadastroDeProdutos();
                         }
                         
-
-                    case 'N':
+                    case "n":
+                    case "N":
                         System.out.println("Opção N selecionada. Voltando ao menu 1.1\n\n");
                         Menu.menuCadastroDeProdutos();
                         break;
@@ -120,7 +111,6 @@ public class Cadastro {
     // Método Altera Produto
 
     public void alteraProduto(String nome) {
-        Scanner scan = new Scanner(System.in);
         Integer conta = 0;
         Integer compara, indice;
         
@@ -134,46 +124,58 @@ public class Cadastro {
                 indice = index;
                 System.out.println("Nome:   "+ListaProdutos.produtos.get(index).getNome()+"    Valor (R$):     "+ListaProdutos.produtos.get(index).getValor()+"   Unidade:    "+ListaProdutos.produtos.get(index).getUnidade()+"     Qtde Estoque:   "+ListaProdutos.produtos.get(index).getQtdeEstoque()+"\n");
 
-                if(conta > 0){
-                    System.out.println("Produto encontrado.\n");
-                    
-                    System.out.println("Deseja editar produto? S/N");
-                    
-                    char opcao = scan.nextLine().charAt(0);
-                    
-                    opcao = Character.toUpperCase(opcao);
-                    switch (opcao) {
-                        case 'S':
-                            ListaProdutos.produtos.remove(ListaProdutos.produtos.get(indice));
-                            //this.relatorios();    
-                            System.out.println("Favor preencher os campos para a alteração do produto.\n\n");
-                            this.cadastraProduto(0);
-                            break;
-                        case 'N':
-                            System.out.println("Você escolheu N. Voltando a tela 1.1\n\n");
-                            Menu.menuCadastroDeProdutos();
-                            break;
-                        default:
-                            System.out.println("Opção inválida.\n\n");
-                            Menu.menuCadastroDeProdutos();
-                            break;
-                    }
-                }else{
-                    System.out.println("Produto Não encontrado.\n");
-                    Menu.alteracaoProduto();
-                }
+                this.confirmaAlteracao(indice, conta);
+            }else{
+                System.out.println("Produto não existe na base de dados.");
+                Menu.alteracaoProduto();
             }
         }
         
+    }
+
+    public void confirmaAlteracao(Integer indice, Integer conta) {
+        if(conta > 0){
+            System.out.println("Produto encontrado.\n");
+            
+            System.out.println("Deseja editar produto? S/N");
+            
+            String opcao = Read.readString();
+
+            while(opcao.compareTo("") == 0 || opcao.compareTo("erro") == 0){
+                System.out.println("Erro ao ler teclado. Digite novamente sua opção.");
+                opcao = Read.readString();
+            }
+            
+            switch (opcao) {
+                case "s":
+                case "S":
+                    ListaProdutos.produtos.remove(ListaProdutos.produtos.get(indice));
+                    //this.relatorios();    
+                    System.out.println("Favor preencher os campos para a alteração do produto.\n\n");
+                    this.cadastraProduto(0);
+                    break;
+                case "n":
+                case "N":
+                    System.out.println("Você escolheu N. Voltando a tela 1.1\n\n");
+                    Menu.menuCadastroDeProdutos();
+                    break;
+                default:
+                    System.out.println("Opção inválida.\n\n");
+                    Menu.menuCadastroDeProdutos();
+                    break;
+            }
+        }else{
+            System.out.println("Produto Não encontrado.\n");
+            Menu.alteracaoProduto();
+        }
     }
 
 
     // Consulta de Produtos
 
     public void consultaProduto(String nome) {
-        Scanner scan = new Scanner(System.in);
         Integer conta = 0;
-        Integer compara, indice;
+        Integer compara;
         
         for(Integer index = 0; index < ListaProdutos.produtos.size(); index++){
             String string1 = nome.toUpperCase();
@@ -191,16 +193,21 @@ public class Cadastro {
                
 
                 System.out.println("Deseja fazer nova consulta? S/N :");
-                char opcao = scan.nextLine().charAt(0);
-                
-                opcao = Character.toUpperCase(opcao);
+                String opcao = Read.readString();
+
+                while(opcao.compareTo("") == 0 || opcao.compareTo("erro") == 0){
+                    System.out.println("Erro ao ler teclado. Digite novamente sua opção.");
+                    opcao = Read.readString();
+                }
 
                 switch (opcao) {
-                    case 'S':
-                        System.err.println("Você escolheu S. Retornando ao menu 1.1.3");
+                    case "s":
+                    case "S":
+                        System.out.println("Você escolheu S. Retornando ao menu 1.1.3");
                         Menu.consultaProduto();
                         break;
-                    case 'N':
+                    case "n":
+                    case "N":
                         System.out.println("Você escolheu N. Retornando ao menu 1.1");
                         Menu.menuCadastroDeProdutos();
                         break;
@@ -212,16 +219,21 @@ public class Cadastro {
             }else{
                 System.out.println("Produto não encontrado.\n\n");
                 System.out.println("Deseja fazer nova consulta? S/N :");
-                char opcao = scan.nextLine().charAt(0);
-                
-                opcao = Character.toUpperCase(opcao);
+                String opcao = Read.readString();
+
+                while(opcao.compareTo("") == 0 || opcao.compareTo("erro") == 0){
+                    System.out.println("Erro ao ler teclado. Digite novamente sua opção.");
+                    opcao = Read.readString();
+                }
 
                 switch (opcao) {
-                    case 'S':
-                        System.err.println("Você escolheu S. Retornando ao menu 1.1.3");
+                    case "s":
+                    case "S":
+                        System.out.println("Você escolheu S. Retornando ao menu 1.1.3");
                         Menu.consultaProduto();
                         break;
-                    case 'N':
+                    case "n":
+                    case "N":
                         System.out.println("Você escolheu N. Retornando ao menu 1.1");
                         Menu.menuCadastroDeProdutos();
                         break;
@@ -248,13 +260,12 @@ public class Cadastro {
             System.out.println("Nome:   "+nome+"    Valor (R$):     "+valor+"   Unidade:    "+unidade+"     Qtde Estoque:   "+qtde+"\n");
             
         }
-        System.out.println("Total de Produtos cadastrados                  :"+total);
+        System.out.println("Total de Produtos cadastrados -------------- "+total);
     }
 
     // Método para excluir um produto da lista de Produtos
 
     public void excluirProduto(String nome) {
-        Scanner scan = new Scanner(System.in);
         for(Integer index = 0; index < ListaProdutos.produtos.size(); index++){
             String string1 = nome.toUpperCase();
             String string2 = ListaProdutos.produtos.get(index).getNome();
@@ -271,12 +282,16 @@ public class Cadastro {
 
                 System.out.println("Deseja excluir este produto? S/N");
                 
-                char opcao = scan.nextLine().charAt(0);
-                
-                opcao = Character.toUpperCase(opcao);
+                String opcao = Read.readString();
+
+                while(opcao.compareTo("") == 0 || opcao.compareTo("erro") == 0){
+                    System.out.println("Erro ao ler teclado. Digite novamente sua opção.");
+                    opcao = Read.readString();
+                }
 
                 switch (opcao) {
-                    case 'S':
+                    case "s":
+                    case "S":
                         ListaProdutos.produtos.remove(ListaProdutos.produtos.get(index));
                         System.out.println("Produto excluído com sucesso.\n\n");
 
@@ -284,7 +299,8 @@ public class Cadastro {
 
                         Menu.menuCadastroDeProdutos();
                         break;
-                    case 'N':
+                    case "n":
+                    case "N":
                         System.out.println("Você escolheu N. Voltando a tela 1.1\n\n");
                         Menu.menuCadastroDeProdutos();
                         break;

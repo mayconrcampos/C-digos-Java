@@ -6,8 +6,6 @@ public class Produto {
     private String unidade;
     private Integer qtde_estoque;
 
-    private Cadastro cadastro = new Cadastro();
-
     public Produto(String nome, Double valor, String unidade, Integer qtde_estoque) {
         this.setNome(nome);
         this.setValor(valor);
