@@ -259,7 +259,7 @@ public class Cadastro {
     // Método que gera relatórios e lista todos os produtos cadastrados.
 
     public void relatorios() {
-        System.out.println(" --------------------------------------- Relatório de Estoque -------------------------------------- ");
+        System.out.println(" ----------------------------------------- Relatório de Estoque --------------------------------------- ");
         Integer total = 0;
         for(Integer i = 0; i < ListaProdutos.produtos.size(); i++) {
             total++;
@@ -272,10 +272,10 @@ public class Cadastro {
             System.out.println("Nome:   "+nome+"    Valor (R$):     "+valor+"   Unidade:    "+unidade+"     Qtde Estoque:   "+qtde+"");
         }
         if(total > 0){
-            System.out.println("Total de Produtos cadastrados - "+total+".");
+            System.out.println("\nTotal de Produtos cadastrados - "+total+".\n\n");
             Menu.menuPrincipal();
         }else{
-            System.out.println("Nenhum produto cadastrado.");
+            System.out.println("\nNenhum produto cadastrado.\n\n");
             Menu.menuPrincipal();
         }   
     }
