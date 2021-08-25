@@ -2,6 +2,8 @@ package MAPA;
 
 import java.util.Scanner;
 
+//import jdk.internal.module.SystemModuleFinders;
+
 public class Cadastro {
     
     // Método Cadastra Produtos
@@ -258,10 +260,15 @@ public class Cadastro {
             String unidade = ListaProdutos.produtos.get(i).getUnidade();
             Integer qtde = ListaProdutos.produtos.get(i).getQtdeEstoque();
 
-            System.out.println("Nome:   "+nome+"    Valor (R$):     "+valor+"   Unidade:    "+unidade+"     Qtde Estoque:   "+qtde+"\n");
-            
+            System.out.println("------------------------------------------------------------------------------------------------------");
+            System.out.println("Nome:   "+nome+"    Valor (R$):     "+valor+"   Unidade:    "+unidade+"     Qtde Estoque:   "+qtde+"");
         }
-        System.out.println("Total de Produtos cadastrados -------------- "+total);
+        if(total > 0){
+            System.out.println("Total de Produtos cadastrados ------------------------------------------------------------------- "+total);
+        }else{
+            System.out.println("Nenhum produto cadastrado.");
+            Menu.menuPrincipal();
+        }   
     }
 
     // Método para excluir um produto da lista de Produtos

@@ -41,6 +41,8 @@ public class Menu {
                 break;
             case 4:
                 System.out.println("4. Relatórios");
+                Cadastro cadastro = new Cadastro();
+                cadastro.relatorios();
                 break;
             default:
                 System.out.println("Opção Inválida!\n\n\n\n");
@@ -127,7 +129,7 @@ public class Menu {
             System.out.println("Erro ao ler Produto. Digite novamente.");
             produto = Read.readString();
         }
-        
+
         Cadastro cadastro = new Cadastro();
         cadastro.alteraProduto(produto);
 
