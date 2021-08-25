@@ -18,19 +18,19 @@ public class Produto {
         
     }
 
-    private void setValor(Double valor) {
+    protected void setValor(Double valor) {
         this.valor = valor;
     }
 
-    private void setUnidade(String unidade) {
+    protected void setUnidade(String unidade) {
             this.unidade = unidade;        
     }
 
-    private void setQtdeEstoque(Integer qtde_estoque) {
+    protected void setQtdeEstoque(Integer qtde_estoque) {
         this.qtde_estoque = qtde_estoque;
     }
 
-    public void setReajuste(Double reajuste) {
+    protected void setReajuste(Double reajuste) {
         this.valor += valor * (reajuste / 100);
     }
 

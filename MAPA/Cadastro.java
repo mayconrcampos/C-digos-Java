@@ -1,6 +1,5 @@
 package MAPA;
 
-import java.util.Scanner;
 
 //import jdk.internal.module.SystemModuleFinders;
 
@@ -9,8 +8,10 @@ public class Cadastro {
     // Método Cadastra Produtos
 
     public void cadastraProduto(Integer flag, Integer indice) {
-            System.out.println("Digite o nome do produto: ");
-            String nome = Read.readString();
+
+            System.out.println((flag == 1) ? "Digite o nome do produto" : "");
+            String nome = (flag == 1) ? Read.readString() : ListaProdutos.produtos.get(indice).getNome();
+
 
             while(nome.compareTo("erro") == 0 || nome.compareTo("") == 0){
                 System.out.println("Digite o nome do produto: ");
@@ -29,9 +30,9 @@ public class Cadastro {
                 }
             }
 
-            if(existe > 0){
-                System.out.println("ERRO ao inserir. Produto já existe.");
-                this.cadastraProduto(1, 0);
+            if(existe > 0 && flag == 1){
+                System.out.println("ERRO ao inserir. Produto já existe.\n\n");
+                Menu.menuCadastroDeProdutos();
 
             }else{
                 System.out.println("Digite o valor (R$): ");
@@ -44,6 +45,7 @@ public class Cadastro {
                 
                 System.out.println("Digite a Unidade: UNI, metro, Par, Cento, Mil :");
                 String unidade = Read.readString();
+
                 while(unidade.compareTo("erro") == 0 || unidade.compareTo("") == 0){
                     System.out.println("Digite a Unidade: UNI, metro, Par, Cento, Mil :");
                     unidade = Read.readString();
@@ -51,6 +53,7 @@ public class Cadastro {
                 
                 System.out.println("Digite quantidade em estoque: ");
                 Integer estoque = Read.readInt();
+
                 while(estoque < 0) {
                     System.out.println("Digite quantidade em estoque: ");
                     estoque = Read.readInt();
@@ -73,7 +76,7 @@ public class Cadastro {
                             System.out.println("Produto inserido com sucesso.");
                             
                             //System.out.println(this.produtos.get(0).getNome());
-                            this.relatorios();
+                            //this.relatorios();
 
                             System.out.println("Repetir operação? S/N :");
                             String repetir = Read.readString();
@@ -93,6 +96,10 @@ public class Cadastro {
                             }
                         }else if(flag == 0){
                             System.out.println("Item Alterado com sucesso\n");
+                            
+                            ListaProdutos.produtos.get(indice).setQtdeEstoque(estoque);
+                            ListaProdutos.produtos.get(indice).setUnidade(unidade);
+                            ListaProdutos.produtos.get(indice).setValor(valor);
                             ListaProdutos.produtos.remove(ListaProdutos.produtos.get(indice));
                             Menu.menuCadastroDeProdutos();
                         }
@@ -129,11 +136,12 @@ public class Cadastro {
                 System.out.println("Nome:   "+ListaProdutos.produtos.get(index).getNome()+"    Valor (R$):     "+ListaProdutos.produtos.get(index).getValor()+"   Unidade:    "+ListaProdutos.produtos.get(index).getUnidade()+"     Qtde Estoque:   "+ListaProdutos.produtos.get(index).getQtdeEstoque()+"\n");
 
                 this.confirmaAlteracao(indice, conta);
-            }else{
-                System.out.println("Produto não existe na base de dados.");
-                Menu.alteracaoProduto();
             }
         }
+
+            if(conta == 0){
+                System.out.println("Produto não encontrado.\n");
+            }
         
     }
 
@@ -153,8 +161,8 @@ public class Cadastro {
             switch (opcao) {
                 case "s":
                 case "S":
-                    //this.relatorios();    
                     System.out.println("Favor preencher os campos para a alteração do produto.\n\n");
+                    // flag 0 - edicao | 1 - inserção
                     this.cadastraProduto(0, indice);
                     break;
                 case "n":
@@ -251,7 +259,7 @@ public class Cadastro {
     // Método que gera relatórios e lista todos os produtos cadastrados.
 
     public void relatorios() {
-        System.out.println(" ------------ Relatório de Estoque ------------------ ");
+        System.out.println(" --------------------------------------- Relatório de Estoque -------------------------------------- ");
         Integer total = 0;
         for(Integer i = 0; i < ListaProdutos.produtos.size(); i++) {
             total++;
@@ -264,7 +272,8 @@ public class Cadastro {
             System.out.println("Nome:   "+nome+"    Valor (R$):     "+valor+"   Unidade:    "+unidade+"     Qtde Estoque:   "+qtde+"");
         }
         if(total > 0){
-            System.out.println("Total de Produtos cadastrados ------------------------------------------------------------------- "+total);
+            System.out.println("Total de Produtos cadastrados - "+total+".");
+            Menu.menuPrincipal();
         }else{
             System.out.println("Nenhum produto cadastrado.");
             Menu.menuPrincipal();

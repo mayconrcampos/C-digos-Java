@@ -1,7 +1,5 @@
 package MAPA;
 
-import java.util.Scanner;
-
 public class Menu {
     
     public static void menuPrincipal(){
