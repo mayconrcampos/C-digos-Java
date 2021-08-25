@@ -6,3 +6,6 @@ Uma das pesquisas que mais resolveu minha vida pra essa atividade, sem dúvida a
 
 Foi postada no fórum do link abaixo em 2018 pelo amiguinho Joanderson Pereira, o qual não conheço, mas considero pacas.
 https://www.clubedohardware.com.br/topic/1341201-rejeitar-letras-em-intdouble/
+
+
+Enfim. Hoje vejo que se eu fosse depender da Universidade pra aprender programação, estaria totalmente perdido.
