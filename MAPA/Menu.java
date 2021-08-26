@@ -186,7 +186,7 @@ public class Menu {
         System.out.println("2. Saída.");
         System.out.println("0. Retornar.");
         System.out.println("-----------------------------------------------------------");
-        System.out.println("Opção: 1, 2 ou 0 pra Retornar ao 1.1 Cadastro de Produtos.");
+        System.out.println("Opção: 1, 2 ou 0 pra Retornar ao 1.1 Cadastro de Produtos.\n");
 
         Integer opcao = Read.readInt();
         String nome;
@@ -204,12 +204,18 @@ public class Menu {
 
             case 1:
                 // Entrada - Flag 1
+
+                System.out.println("TELA 1.2.1 ----- Empresa de Importação de Produtos LTDA -----");
+                System.out.println("-----------------------------------------------------------");
+                System.out.println("------------ Sistema de Controle de Estoque ---------------");
+                System.out.println("-----------------------------------------------------------");
+                System.out.println("ENTRADA DE PRODUTOS ----------------------------------\n");
                 System.out.println("1. Entrada - Digite o nome do Produto.");
 
                 nome = Read.readString();
 
                 while (nome.compareTo("") == 0 || nome.compareTo("erro") == 0) {
-                    System.out.println("Digite o nome do Produto.");
+                    System.out.println("Entrada inválida. Digite o nome do Produto novamente.");
                     nome = Read.readString();
                 }
 
@@ -219,12 +225,18 @@ public class Menu {
             
             case 2:
                 // Saída - Flag 0
+
+                System.out.println("TELA 1.2.2 ----- Empresa de Importação de Produtos LTDA -----");
+                System.out.println("-----------------------------------------------------------");
+                System.out.println("------------ Sistema de Controle de Estoque ---------------");
+                System.out.println("-----------------------------------------------------------");
+                System.out.println("SAÍDA DE PRODUTOS ----------------------------------\n");
                 System.out.println("2. Saída - Digite o nome do Produto.");
 
                 nome = Read.readString();
 
                 while (nome.compareTo("") == 0 || nome.compareTo("erro") == 0) {
-                    System.out.println("Digite o nome do Produto.");
+                    System.out.println("Entrada inválida. Digite o nome do Produto novamente.");
                     nome = Read.readString();
                 }
 
@@ -236,5 +248,6 @@ public class Menu {
                 Menu.Movimentacao();
                 break;
         }
-    }            
+    }
+    
 }
