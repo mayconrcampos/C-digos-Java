@@ -249,5 +249,19 @@ public class Menu {
                 break;
         }
     }
+
+    public static void reajusteDePreco() {
+        System.out.println("TELA 1.3 ----- Empresa de Importação de Produtos LTDA -----");
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("------------ Sistema de Controle de Estoque ---------------");
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("REAJUSTE DE PREÇOS ----------------------------------------");
+        System.out.println("1. Entrada.");
+        System.out.println("2. Saída.");
+        System.out.println("0. Retornar.");
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("Opção: 1, 2 ou 0 pra Retornar ao 1.1 Cadastro de Produtos.\n");
+        
+    }
     
 }

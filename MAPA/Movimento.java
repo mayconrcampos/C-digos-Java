@@ -41,8 +41,31 @@ public class Movimento {
                         
                         cadastro.listaSimples();
 
-                        System.out.println("Retornando ao Menu Movimentação\n\n");
-                        Menu.Movimentacao();
+                        System.out.println("Deseja repetir a operação? S/N\n\n");
+                        String repetir = Read.readString();
+
+                        if(repetir.compareTo("") == 0 || repetir.compareTo("erro") == 0){
+                            System.out.println("Entrada inválida. Deseja repetir a operação? S/N");
+                            repetir = Read.readString();
+                        }
+
+                        switch (repetir) {
+                            case "s":
+                            case "S":
+                                System.out.println("Repetindo a Operação.\n\n");
+                                Menu.Movimentacao();
+                                break;
+                            case "n":
+                            case "N":
+                                System.out.println("Retornando ao Menu Principal.\n\n");
+                                Menu.menuPrincipal();
+                                break;
+                            default:
+                                System.out.println("Opção inválida.\n\n");
+                                Menu.menuPrincipal();
+                                break;
+                        }
+
                         break;
                     case "n":
                     case "N":
@@ -55,7 +78,11 @@ public class Movimento {
                         break;
                 }
 
-                break;
+         
+
+
+
+
             case 1:
                 System.out.println("1. Entrada de Produtos no estoque.\n\n");
 
@@ -92,9 +119,30 @@ public class Movimento {
                         
                         cadastro.listaSimples();
 
-                        System.out.println("Retornando ao Menu Movimentação\n\n");
-                        Menu.Movimentacao();
-                        break;
+                        System.out.println("Deseja repetir a operação? S/N\n\n");
+                        String repetir = Read.readString();
+
+                        if(repetir.compareTo("") == 0 || repetir.compareTo("erro") == 0){
+                            System.out.println("Entrada inválida. Deseja repetir a operação? S/N");
+                            repetir = Read.readString();
+                        }
+
+                        switch (repetir) {
+                            case "s":
+                            case "S":
+                                System.out.println("Repetindo a Operação.\n\n");
+                                Menu.Movimentacao();
+                                break;
+                            case "n":
+                            case "N":
+                                System.out.println("Retornando ao Menu Principal.\n\n");
+                                Menu.menuPrincipal();
+                                break;
+                            default:
+                                System.out.println("Opção inválida.\n\n");
+                                Menu.menuPrincipal();
+                                break;
+                        }
                     case "n":
                     case "N":
                         System.out.println("Você escolheu N. Retornando ao menu Movimentação.\n\n\n");
@@ -105,8 +153,6 @@ public class Movimento {
                         Menu.Movimentacao();
                         break;
                 }
-                break;
-    
         }
     }
 
