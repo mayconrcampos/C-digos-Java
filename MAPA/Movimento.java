@@ -5,6 +5,8 @@ public class Movimento {
     public static void entradaSaida(String nome, Integer indice, Integer flag, Integer estoqueAtual) {
         Cadastro cadastro = new Cadastro();
         switch (flag) {
+
+            // Caso for saida de produtos - flag = 0
             case 0:
                 System.out.println("2. Saída de Produtos do estoque");
 
@@ -81,7 +83,7 @@ public class Movimento {
          
 
 
-
+            // Caso for entrada de produtos - flag = 1
 
             case 1:
                 System.out.println("1. Entrada de Produtos no estoque.\n\n");
@@ -143,7 +145,7 @@ public class Movimento {
                                 Menu.menuPrincipal();
                                 break;
                         }
-                    case "n":
+                    case "n":  
                     case "N":
                         System.out.println("Você escolheu N. Retornando ao menu Movimentação.\n\n\n");
                         Menu.Movimentacao();
@@ -153,7 +155,70 @@ public class Movimento {
                         Menu.Movimentacao();
                         break;
                 }
+
+            // Caso for reajuste de preços - flag = 2
+            
+            case 2:
+                System.out.println("2. Reajuste de Preços.\n\n");
+
+                System.out.println("Reajuste - Digite o novo valor (R$).");
+                Double novoValor = Read.readDouble();
+                
+                while(novoValor <= 0){
+                    System.out.println("Reajuste - Inválido! Digite novamente o novo valor (R$).");
+                    saida = Read.readInt();
+                }
+
+                System.out.println("Confirma Reajuste de Preço para o produto "+nome+"? S/N");
+                String confirmaReajuste = Read.readString();
+
+                if(confirmaReajuste.compareTo("") == 0 || confirmaReajuste.compareTo("erro") == 0){
+                    System.out.println("Entrada inválida. Confirma Reajuste de preço para o produto "+nome+"? S/N");
+                    confirmaReajuste = Read.readString();
+                }
+
+                switch (confirmaReajuste) {
+                    case "s":
+                    case "S":
+                        System.out.println("Reajuste confirmado.");
+                        //Integer atualMaisEntrada = estoqueAtual + entrada;
+
+                        System.out.println("Preço Antes (R$): "+ListaProdutos.produtos.get(indice).getValor());
+                        System.out.println("----------------------------");
+                        System.out.println("Preço Atual (R$): "+novoValor);
+
+                        ListaProdutos.produtos.get(indice).setValor(novoValor);
+
+                        cadastro.listaSimples();
+
+                        System.out.println("Deseja repetir a operação? S/N\n\n");
+                        String repetir = Read.readString();
+
+                        if(repetir.compareTo("") == 0 || repetir.compareTo("erro") == 0){
+                            System.out.println("Entrada inválida. Deseja repetir a operação? S/N");
+                            repetir = Read.readString();
+                        }
+
+                        switch (repetir) {
+                            case "s":
+                            case "S":
+                                System.out.println("Repetindo a Operação.\n\n");
+                                Menu.Movimentacao();
+                                break;
+                            case "n":
+                            case "N":
+                                System.out.println("Retornando ao Menu Principal.\n\n");
+                                Menu.menuPrincipal();
+                                break;
+                            default:
+                                System.out.println("Opção inválida.\n\n");
+                                Menu.menuPrincipal();
+                                break;
+                
+                        }
+                }
         }
+        
     }
 
     public static void confirmaSeExiste(String nome, Integer flag){
@@ -170,9 +235,12 @@ public class Movimento {
                 estoqueAtual = ListaProdutos.produtos.get(index).getQtdeEstoque();
                 conta++;
                 indice = index;
+
                 System.out.println("Nome:   "+ListaProdutos.produtos.get(index).getNome()+"    Valor (R$):     "+ListaProdutos.produtos.get(index).getValor()+"   Unidade:    "+ListaProdutos.produtos.get(index).getUnidade()+"     Qtde Estoque:   "+ListaProdutos.produtos.get(index).getQtdeEstoque()+"\n");
 
-                if(flag == 1){
+                if(flag == 0){
+                    Movimento.entradaSaida(nome, indice, flag, estoqueAtual);
+                }else if (flag == 1){
                     Movimento.entradaSaida(nome, indice, flag, estoqueAtual);
                 }else{
                     Movimento.entradaSaida(nome, indice, flag, estoqueAtual);

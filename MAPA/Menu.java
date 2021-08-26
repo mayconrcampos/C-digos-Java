@@ -37,6 +37,7 @@ public class Menu {
                 break;
             case 3:
                 System.out.println("3. Reajuste de Preços");
+                Menu.reajusteDePreco();
                 break;
             case 4:
                 System.out.println("4. Relatórios");
@@ -256,11 +257,21 @@ public class Menu {
         System.out.println("------------ Sistema de Controle de Estoque ---------------");
         System.out.println("-----------------------------------------------------------");
         System.out.println("REAJUSTE DE PREÇOS ----------------------------------------");
-        System.out.println("1. Entrada.");
-        System.out.println("2. Saída.");
+        System.out.println("1. Reajustar.");
         System.out.println("0. Retornar.");
         System.out.println("-----------------------------------------------------------");
-        System.out.println("Opção: 1, 2 ou 0 pra Retornar ao 1.1 Cadastro de Produtos.\n");
+        System.out.println("Opção: 1 ou 0 pra Retornar ao 1.1 Cadastro de Produtos.\n");
+
+        System.out.println("Digite o nome do produto para reajustar o preço.");
+        String nome = Read.readString();
+
+        if(nome.compareTo("") == 0 || nome.compareTo("erro") == 0){
+            System.out.println("Entrada inválida. Digite o nome do produto para reajustar o preço.");
+            nome = Read.readString();
+        }
+
+        Movimento.confirmaSeExiste(nome, 2);
+
         
     }
     
