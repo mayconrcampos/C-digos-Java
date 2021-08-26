@@ -309,7 +309,7 @@ public class Cadastro {
             Integer qtde = ListaProdutos.produtos.get(i).getQtdeEstoque();
 
             tot_qtde += qtde;
-            soma += valor;
+            soma += valor * qtde;
 
             System.out.println("------------------------------------------------------------------------------------------------------");
             System.out.println("Nome:   "+nome+"    Valor (R$):     "+valor+"   Unidade:    "+unidade+"     Qtde Estoque:   "+qtde+"");
